@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CUS03V1.Models.TPuntaje>
+
+@{
+    ViewData["Title"] = "Calificar Participante";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<script>
+    function capturar() {
+        var numj = document.getElementById("numJur").value;
+        ;
+    }
+</script>*@
+
+
+
+<div class="row">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div>
+                <h4 class="panel-title">Eleccion de Tanda</h4>
+            </div>
+        </div>
+
+        <div class="panel panel-body form-group">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row col-xs-12 col-md-12 col-lg-12">
+
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-6">
+                        <label class="control-label">Nº Tanda:</label>
+                        <input id="codTan" asp- class="form-control" placeholder="Tanda" type="number" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group  col-xs-12 col-md-12 col-lg-6">
+                        <hr>
+                        <a asp-action="Create" class="btn btn-block btn-success">CALIFICAR</a>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IpPuntaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IpNumeroJurado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FkIumtCod)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IpPuntaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IpNumeroJurado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FkIumtCod.FkIumtCodPart)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PkIpCodP">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PkIpCodP">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PkIpCodP">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
